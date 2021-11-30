@@ -1,0 +1,34 @@
+//COmmands of mongoDB
+
+//VIEWING ALL DBS
+show dbs
+
+//INSERTING DATA IN MONGODB
+use nameOfDirectory
+db.items.insertOne({name:"XYZ",price:45000,rating:4.4,qty:200,sold:122}).
+db.items.insertMany([{name:"XYZ",price:45000,rating:4.4,qty:200,sold:122},{name:"XYZ",price:45000,rating:4.4,qty:200,sold:122}]).
+
+//VIEWING ALL DATA
+db.items.find()
+
+//VIEWING FILTERED DATA
+db.items.find({price:45000})//equal to
+db.items.find({price:{$gte:20000}})//greater than equal to
+db.items.find({price:{$gt:20000}})//greater than
+
+//AND
+db.items.find({price:{$gt:20000},rating:4})
+
+//OR
+db.items.find({ $or:[{price:{$gt:20000}},{rating:4}]})
+
+//PROJECTION
+db.items.find({rating:4},{rating:1,qty:1})
+
+//DELETION
+db.items.deleteOne({price:45000})
+db.items.deleteMany()
+
+//UPDATE
+db.items.updateOne({name:"XYZ"},{$set:{price:2}})
+db.items.updateMany({name:"XYZ"},{$set:{price:2}})
